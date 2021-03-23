@@ -107,17 +107,62 @@ document.getElementById("btn").addEventListener("click", makerequest);
 
 
 // Async and Await | Single data fetch | Rendering data in webpage or browser
+// async function makerequest(){
+//     try {
+//         console.log("Button Clicked")
+//         const response = await fetch("https://jsonplaceholder.typicode.com/posts/1")
+//         if(!response.ok){
+//             throw Error(response.statusText)
+//         }
+//         const data = await response.json()
+//         document.getElementById("pid").innerText = data.id
+//         document.getElementById("title").innerText = data.title
+//         document.getElementById("body").innerText = data.body
+//     } catch (error) {
+//         console.log(error)
+//     }
+// }
+ 
+
+// Async and Await | Multiple data fetch 
+// async function makerequest(){
+//     try {
+//         console.log("Button Clicked")
+//         const response = await fetch("https://jsonplaceholder.typicode.com/posts")
+//         if(!response.ok){
+//             throw Error(response.statusText)
+//         }
+//         const data = await response.json()
+//         console.log("Data", data)
+//         data.forEach(element => {
+//             console.log("ID:", element.id)
+//             console.log("Title:", element.title)
+//             console.log("Body:", element.body)
+//         });
+//     } catch (error) {
+//         console.log(error)
+//     }
+// }
+
+
+// Async and Await | Multiple data fetch | Rendering data in webpage or browser
 async function makerequest(){
     try {
         console.log("Button Clicked")
-        const response = await fetch("https://jsonplaceholder.typicode.com/posts/1")
+        const response = await fetch("https://jsonplaceholder.typicode.com/posts")
         if(!response.ok){
             throw Error(response.statusText)
         }
         const data = await response.json()
-        document.getElementById("pid").innerText = data.id
-        document.getElementById("title").innerText = data.title
-        document.getElementById("body").innerText = data.body
+        console.log("Data", data)
+        const output = document.getElementById("alldata")
+        data.forEach(element => {
+            output.innerHTML += `
+            <div>ID: ${element.id}</div>
+            <div>Title: ${element.title}</div>
+            <div>Body: ${element.body}</div> <hr>
+            `
+        });
     } catch (error) {
         console.log(error)
     }
