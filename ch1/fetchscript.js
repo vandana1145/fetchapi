@@ -85,7 +85,7 @@ document.getElementById("btn-submit").addEventListener("click", makerequest);
 // }
 
 
-// Async await: >Showing data in browser
+// Async await: Showing data in browser
 async function makerequest(){
     try {
         console.log("Button Clicked")
