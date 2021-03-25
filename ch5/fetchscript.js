@@ -36,3 +36,30 @@ function makerequest(event){
         console.log(error)
     })
 } 
+
+/* Post form data to API using async and await.
+The word 'async' before a function means that the function always returns a promise. 
+The keyword 'await' makes teh JavaScript wait until that promise settles and returns its result.*/
+async function makerequest(event){
+    event.preventDefault()
+    try {
+        console.log("Button Clicked")
+        let name = document.getElementById("name").value
+        let job = document.getElementById("job").value
+        const myPost = {
+            method: 'POST',
+            headers: {
+                'Content-Type':'application/json'
+            },
+            body: JSON.stringify({name:name, job:job})
+        }
+        const response = await fetch('https://reqres.in/api/users', myPost)
+        if(!response.ok){
+            throw Error(response.statusText)
+        }
+        const data = await response.json()
+        console.log(data)
+    } catch (error) {
+        console.log(error)
+    }
+}
