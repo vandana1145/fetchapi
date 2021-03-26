@@ -110,6 +110,20 @@ document.getElementById("btn").addEventListener("click", makerequest);
 // async function makerequest(){
 //     try {
 //         console.log("Button Clicked")
+//         const response = await fetch("http://127.0.0.1:8000/api/category/1/")
+//         if(!response.ok){
+//             throw Error(response.statusText)
+//         }
+//         const data = await response.json()
+//         document.getElementById("id").innerText = data.id
+//         document.getElementById("category").innerText = data.category
+//     } catch (error) {
+//         console.log(error)
+//     }
+// }
+// async function makerequest(){
+//     try {
+//         console.log("Button Clicked")
 //         const response = await fetch("https://jsonplaceholder.typicode.com/posts/1")
 //         if(!response.ok){
 //             throw Error(response.statusText)
@@ -149,18 +163,19 @@ document.getElementById("btn").addEventListener("click", makerequest);
 async function makerequest(){
     try {
         console.log("Button Clicked")
-        const response = await fetch("https://jsonplaceholder.typicode.com/posts")
+        const response = await fetch("http://127.0.0.1:8000/api/categories")
         if(!response.ok){
             throw Error(response.statusText)
         }
-        const data = await response.json()
+        let data = await response.json()
         console.log("Data", data)
         const output = document.getElementById("alldata")
-        data.forEach(element => {
+        results = data['results'];
+        results.forEach(element => {
+            output.innerHTML = ''
             output.innerHTML += `
             <div>ID: ${element.id}</div>
-            <div>Title: ${element.title}</div>
-            <div>Body: ${element.body}</div> <hr>
+            <div>Category: ${element.category}</div>
             `
         });
     } catch (error) {
